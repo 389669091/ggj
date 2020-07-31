@@ -1,0 +1,189 @@
+
+<div class="navbar-container clearfix" id="navbar-container">
+    <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+        <span class="sr-only">Toggle sidebar</span>
+
+        <span class="icon-bar"></span>
+
+        <span class="icon-bar"></span>
+
+        <span class="icon-bar"></span>
+    </button>
+
+    <div class="navbar-header pull-left" style="min-width:190px;">
+        <a  class="navbar-brand">
+            <small>
+                固管家服务平台
+            </small>
+        </a>
+    </div>
+    <!-- <div class="navbar-header">
+        <ul class="nav navbar-nav">
+            <li class="">
+                <a  data-trigger="ajax" data-target="#fill-main-content" class="bigger-120">
+                <i class="menu-icon fa "></i>&nbsp;
+                </a>
+            </li>
+        </ul>
+    </div> -->
+
+    <div class="navbar-buttons navbar-header pull-right" role="navigation">
+        <ul class="nav ace-nav">
+
+            <li class="green">
+                <a class="dropdown-toggle" href="javascript:void(0);" id="fullscreen" title="全屏"
+                   onclick="launchFullscreen(document.documentElement);">
+                    <i class="ace-icon fa fa-arrows-alt "></i>
+                </a>
+            </li>
+
+            <li class="purple" style="display:none;">
+                <a data-toggle="dropdown" class="dropdown-toggle" >
+                    <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                    <span class="badge badge-important">8</span>
+                </a>
+
+                <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                    <li class="dropdown-header">
+                        <i class="ace-icon fa fa-exclamation-triangle"></i>
+                        8 Notifications
+                    </li>
+
+                    <li>
+                        <a >
+                            <div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+												New Comments
+											</span>
+                                <span class="pull-right badge badge-info">+12</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a >
+                            <i class="btn btn-xs btn-primary fa fa-user"></i>
+                            Bob just signed up as an editor ...
+                        </a>
+                    </li>
+
+                    <li>
+                        <a >
+                            <div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+												New Orders
+											</span>
+                                <span class="pull-right badge badge-success">+8</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a >
+                            <div class="clearfix">
+											<span class="pull-left">
+												<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+												Followers
+											</span>
+                                <span class="pull-right badge badge-info">+11</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="dropdown-footer">
+                        <a >
+                            See all notifications
+                            <i class="ace-icon fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="light-blue">
+                <a data-toggle="dropdown"  class="dropdown-toggle">
+                    <img class="nav-user-photo" src="static/img/small-male-pic.png" />
+                    <span class="user-info">
+									<small>你好,</small>
+									{{loginUser.name}}
+								</span>
+
+                    <i class="ace-icon fa fa-caret-down"></i>
+                </a>
+
+                <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                    <li>
+                        <a href="../userCenter/userCenter.html">
+                            <i class="ace-icon fa fa-user"></i>
+                            我的资料
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li>
+                        <a @click="logout">
+                            <i class="ace-icon fa fa-power-off"></i>
+                            退出
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div><!-- /.navbar-container -->
+<script>
+    //index页面都必须加载了vue.js  同时必须保证加载公共页面的逻辑在加载vue.js之后执行
+    // let vm = new Vue({
+    //     el:'#navbar-container',
+    //     data:{
+    //         loginUser:{}
+    //     },
+    //     methods:{
+    //         logout:function () {//退出登录
+    //             //客户端状态对象清除
+    //             sessionStorage.clear();//清空
+    //             location.href="main/logout";
+    //         },
+    //         getLoginUser:function () {
+    //             // debugger;
+    //             //从sessiionStorge中获取绑定用户字符串，转对象
+    //             let loginUser = sessionStorage.getItem("loginUser");
+    //             if(loginUser!=undefined&&loginUser!=null){  //防止直接不登录访问其他页面
+    //                 this.loginUser = JSON.parse(loginUser);
+    //             }else{
+    //                 location.href='login.html';//阻止未登录的访问
+    //             }
+    //
+    //         }
+    //     },
+    //     created:function () {
+    //         this.getLoginUser()
+    //     }
+    // })
+    let vm=new Vue({
+        el:'#navbar-container',
+        data:{
+            loginUser:{}
+        },
+        methods:{
+            getLoginUser:function () {
+                let loginUser=sessionStorage.getItem("loginUser");
+                if(loginUser!=undefined&&loginUser!=null){
+                    this.loginUser=JSON.parse(loginUser);
+                }else {
+                    location.href='login.html'
+                }
+            },
+            logout:function () {
+                sessionStorage.clear();
+                location.href='main/logout'
+            },
+        },
+        created:function () {
+            this.getLoginUser()
+        }
+    })
+
+</script>
