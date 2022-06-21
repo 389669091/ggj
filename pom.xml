@@ -28,7 +28,7 @@ plugin:插件设置    maven-compiler-plugin编译插件
         <dependency><!--mysql依赖-->
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.35</version>
+            <version>8.0.28</version>
         </dependency>
         <dependency><!--连接池依赖-->
             <groupId>com.alibaba</groupId>
