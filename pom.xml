@@ -77,7 +77,7 @@ plugin:插件设置    maven-compiler-plugin编译插件
         <dependency><!--ajax依赖-->
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.11.1</version>
+            <version>2.12.7.1</version>
         </dependency>
 
 
